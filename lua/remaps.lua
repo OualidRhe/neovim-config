@@ -28,11 +28,18 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus right" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus down" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus up" })
 
+-- Copy selection to system clipboard
+vim.keymap.set("v", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Copy selection to clipboard" })
+
 -- Copy full file path to clipboard
 vim.keymap.set("n", "<leader>cp", function()
   local path = vim.fn.expand("%:p")
   vim.fn.system("xclip -selection clipboard", path)
 end, { desc = "Copy full file path to clipboard" })
+
+-- Quick mark: <leader>m to set, <leader>- to jump back
+vim.keymap.set("n", "<leader>+", "ma", { noremap = true, silent = true, desc = "Set mark" })
+vim.keymap.set("n", "<leader>-", "`a", { noremap = true, silent = true, desc = "Jump to mark" })
 
 -- Move lines up/down
 vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move line down" })
