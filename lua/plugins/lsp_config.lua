@@ -20,6 +20,7 @@ return {
                     "jdtls",
                     "lua_ls",
                     "bashls",
+                    "pyright",
                 },
             })
         end,
