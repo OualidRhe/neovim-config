@@ -50,8 +50,24 @@ vim.lsp.config("bashls", {
     capabilities = capabilities,
 })
 
+-- Python
+vim.lsp.config("pyright", {
+    cmd = { "pyright-langserver", "--stdio" },
+    filetypes = { "python" },
+    root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
+    capabilities = capabilities,
+    settings = {
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+            },
+        },
+    },
+})
+
 -- Enable LSP servers (jdtls is handled separately in ftplugin/java.lua)
-vim.lsp.enable({ "clangd", "ts_ls", "lua_ls", "bashls" })
+vim.lsp.enable({ "clangd", "ts_ls", "lua_ls", "bashls", "pyright" })
 
 -- LSP Keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
