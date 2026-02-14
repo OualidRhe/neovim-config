@@ -34,6 +34,7 @@ return {
                 ensure_installed = {
                     "java-debug-adapter",
                     "java-test",
+                    "prettierd",
                 },
             })
         end,
