@@ -9,11 +9,6 @@ vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true, desc
 vim.keymap.set("n", "<leader>q", ":wq<CR>", { noremap = true, silent = true, desc = "Save and quit" })
 vim.keymap.set("n", "<leader>qq", ":q!<CR>", { noremap = true, silent = true, desc = "Quit without saving" })
 
--- Explorer shortcuts
-vim.keymap.set("n", "<leader>e.", ":Explore .<CR>", { noremap = true, silent = true, desc = "Explore current dir" })
-vim.keymap.set("n", "<leader>eh", ":Explore $HOME<CR>", { noremap = true, silent = true, desc = "Explore home" })
-vim.keymap.set("n", "<leader>ed", ":Explore %:h<CR>", { noremap = true, silent = true, desc = "Explore file dir" })
-vim.keymap.set("n", "<leader>ec", ":Explore $HOME/.config/nvim<CR>", { noremap = true, silent = true, desc = "Explore nvim config" })
 
 -- Clear search highlight
 vim.keymap.set("n", "<leader>/", ":nohlsearch<CR>", { noremap = true, silent = true, desc = "Clear search highlight" })
