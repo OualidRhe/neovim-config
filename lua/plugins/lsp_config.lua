@@ -35,6 +35,8 @@ return {
                     "java-debug-adapter",
                     "java-test",
                     "prettierd",
+                    "ruff",
+                    "sql-formatter",
                 },
             })
         end,

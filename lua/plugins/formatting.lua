@@ -14,6 +14,13 @@ return {
                 css = { "prettierd" },
                 markdown = { "prettierd" },
                 yaml = { "prettierd" },
+                python = { "ruff_organize_imports", "ruff_format" },
+                sql = { "sql_formatter" },
+            },
+            formatters = {
+                sql_formatter = {
+                    prepend_args = { "-l", "postgresql" },
+                },
             },
             format_on_save = {
                 timeout_ms = 2000,
