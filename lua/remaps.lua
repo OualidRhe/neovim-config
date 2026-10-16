@@ -26,6 +26,9 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus up" })
 -- Copy selection to system clipboard
 vim.keymap.set("v", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Copy selection to clipboard" })
 
+-- Turn each selected word into "word: ${word}"
+vim.keymap.set("x", "<leader>v", [[:s/\w\+/&: ${&}/<CR>:nohlsearch<CR>]], { noremap = true, silent = true, desc = "Template var: ${var}" })
+
 -- Copy full file path to clipboard
 vim.keymap.set("n", "<leader>cp", function()
   local path = vim.fn.expand("%:p")
