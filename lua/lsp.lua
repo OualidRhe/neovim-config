@@ -66,8 +66,21 @@ vim.lsp.config("pyright", {
     },
 })
 
+-- Prisma
+vim.lsp.config("prismals", {
+    cmd = { "prisma-language-server", "--stdio" },
+    filetypes = { "prisma" },
+    root_markers = { "schema.prisma", "prisma.config.ts", ".git" },
+    capabilities = capabilities,
+    settings = {
+        prisma = {
+            enableDiagnostics = true,
+        },
+    },
+})
+
 -- Enable LSP servers (jdtls is handled separately in ftplugin/java.lua)
-vim.lsp.enable({ "clangd", "ts_ls", "lua_ls", "bashls", "pyright" })
+vim.lsp.enable({ "clangd", "ts_ls", "lua_ls", "bashls", "pyright", "prismals" })
 
 -- LSP Keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
