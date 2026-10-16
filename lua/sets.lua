@@ -44,19 +44,21 @@ vim.opt.updatetime = 100
 -- Completion options
 vim.opt.completeopt = "menu,menuone,noselect"
 
--- WSL clipboard integration
-vim.g.clipboard = {
-    name = 'WslClipboard',
-    copy = {
-        ["+"] = 'clip.exe',
-        ["*"] = 'clip.exe',
-    },
-    paste = {
-        ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-        ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
-    cache_enabled = 0,
-}
+-- WSL clipboard integration (elsewhere nvim auto-detects wl-copy/xclip)
+if vim.fn.has("wsl") == 1 then
+    vim.g.clipboard = {
+        name = 'WslClipboard',
+        copy = {
+            ["+"] = 'clip.exe',
+            ["*"] = 'clip.exe',
+        },
+        paste = {
+            ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        },
+        cache_enabled = 0,
+    }
+end
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
