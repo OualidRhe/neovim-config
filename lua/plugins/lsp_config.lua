@@ -21,6 +21,7 @@ return {
                     "lua_ls",
                     "bashls",
                     "pyright",
+                    "prismals",
                 },
             })
         end,

@@ -67,6 +67,9 @@ vim.lsp.config("pyright", {
 })
 
 -- Prisma
+-- NOTE: settings.prisma must be a non-nil table. The server pulls config for
+-- section "prisma" via workspace/configuration; without this it receives null
+-- and crashes in validateTextDocument (reading 'enableDiagnostics' of null).
 vim.lsp.config("prismals", {
     cmd = { "prisma-language-server", "--stdio" },
     filetypes = { "prisma" },
@@ -76,6 +79,17 @@ vim.lsp.config("prismals", {
         prisma = {
             enableDiagnostics = true,
         },
+    },
+    handlers = {
+        -- For some schema syntax errors Prisma sends window/showMessageRequest,
+        -- which Neovim renders as a *blocking* prompt that reappears on every
+        -- edit and locks you out of the buffer. Route it to a non-blocking
+        -- notification and answer null so the server isn't left waiting.
+        -- (Genuine errors still surface as inline diagnostics.)
+        ["window/showMessageRequest"] = function(_, result)
+            vim.notify("[prismals] " .. (result.message or ""), vim.log.levels.WARN)
+            return vim.NIL
+        end,
     },
 })
 
